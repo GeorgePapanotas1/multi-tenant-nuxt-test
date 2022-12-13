@@ -1,5 +1,6 @@
 <template>
 hey index master
+  <NuxtLink to="/test">TEst</NuxtLink>
 </template>
 
 <script setup>

@@ -19,12 +19,14 @@ export default <RouterOptions>{
             subdomain = ssrContext?.event.context.subdomain;
             useCookie("subdomain").value = subdomain;
         }
+        // console.log(_routes)
         if (subdomain) {
+
             const userRoute = _routes.filter((i) => {
                 if (page) return i.path == `/subdomains/${page}`;
                 else return i.path == `/subdomains`;
             });
-
+            console.log(userRoute)
             const userRouteMapped = userRoute.map((i) => ({
                 ...i,
                 path: page

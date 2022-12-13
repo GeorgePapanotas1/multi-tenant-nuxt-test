@@ -1,5 +1,6 @@
 <template>
   <h2>Hello from generic subdomain</h2>
+  <NuxtLink to="/test"> go to test</NuxtLink>
 </template>
 
 <script setup>
