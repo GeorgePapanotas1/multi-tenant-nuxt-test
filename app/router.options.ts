@@ -1,12 +1,14 @@
 import type { RouterOptions } from "@nuxt/schema";
+import { mainDomain } from "@/constData/app";
 import { createMemoryHistory } from "vue-router";
 export default <RouterOptions>{
     routes: (_routes) => {
         const currentUrl = useCookie("currentUrl").value;
         let url = null;
         let page = "";
+        const hostRegex = `/(?<=\\b(${mainDomain.join('[/]|')}[/])\\b).+/g`
         if (currentUrl)
-            url = currentUrl.match(/(?<=\b(localhost:3000[/]|pyango.ch[/])\b).+/g);
+            url = currentUrl.match(hostRegex);
         if (url) {
             page = url[0];
             if (currentUrl.charAt(currentUrl.length - 1) === "/")
@@ -19,31 +21,15 @@ export default <RouterOptions>{
             subdomain = ssrContext?.event.context.subdomain;
             useCookie("subdomain").value = subdomain;
         }
-        // console.log(_routes)
+
         if (subdomain) {
 
             const userRoute = _routes.filter((i) => {
                 if (page) return i.path == `/subdomains/${page}`;
                 else return i.path == `/subdomains`;
             });
-            // console.log('======================')
-            // console.log(_routes)
-            const userRouteMapped = _routes.map((i) => {
-                // let path = "";
-                // if (page) {
-                //     if (i.path === `/subdomains/${page}`) {
-                //         path = i.path.replace(`/subdomains/${page}`, `/${page}`);
-                //     } else {
-                //         path = i.path.replace(`/subdomains/${page}/`, `/${page}`);
-                //     }
-                // } else {
-                //     if (i.path === `/subdomains`) {
-                //         path = i.path.replace(`/subdomains`, "/");
-                //     } else {
-                //         path = i.path.replace(`/subdomains/`, "/");
-                //     }
-                // }
 
+            const userRouteMapped = _routes.map((i) => {
                 return {
                 ...i,
                 path: page

@@ -1,6 +1,7 @@
 <template>
 hey index master
-  <NuxtLink to="/test">TEst</NuxtLink>
+  <NuxtLink to="/test">TEst</NuxtLink><br>
+  <a href="http://ttt.localhost:3000/dashboard/">go to sub</a>
 </template>
 
 <script setup>
