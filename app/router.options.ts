@@ -26,13 +26,24 @@ export default <RouterOptions>{
                 if (page) return i.path == `/subdomains/${page}`;
                 else return i.path == `/subdomains`;
             });
-            // console.log(userRoute)
             // console.log('======================')
             // console.log(_routes)
             const userRouteMapped = _routes.map((i) => {
-                console.log(i.path);
-                console.log(page)
-                console.log(i.path, i.path === `/subdomains`)
+                // let path = "";
+                // if (page) {
+                //     if (i.path === `/subdomains/${page}`) {
+                //         path = i.path.replace(`/subdomains/${page}`, `/${page}`);
+                //     } else {
+                //         path = i.path.replace(`/subdomains/${page}/`, `/${page}`);
+                //     }
+                // } else {
+                //     if (i.path === `/subdomains`) {
+                //         path = i.path.replace(`/subdomains`, "/");
+                //     } else {
+                //         path = i.path.replace(`/subdomains/`, "/");
+                //     }
+                // }
+
                 return {
                 ...i,
                 path: page
@@ -43,7 +54,6 @@ export default <RouterOptions>{
                         ? i.path.replace(`/subdomains`, "/")
                         : i.path.replace(`/subdomains/`, "/"),
             }});
-            console.log(userRouteMapped)
             return userRouteMapped;
         }
     },
