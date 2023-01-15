@@ -26,8 +26,14 @@ export default <RouterOptions>{
                 if (page) return i.path == `/subdomains/${page}`;
                 else return i.path == `/subdomains`;
             });
-            console.log(userRoute)
-            const userRouteMapped = userRoute.map((i) => ({
+            // console.log(userRoute)
+            // console.log('======================')
+            // console.log(_routes)
+            const userRouteMapped = _routes.map((i) => {
+                console.log(i.path);
+                console.log(page)
+                console.log(i.path, i.path === `/subdomains`)
+                return {
                 ...i,
                 path: page
                     ? i.path === `/subdomains/${page}`
@@ -36,7 +42,8 @@ export default <RouterOptions>{
                     : i.path === `/subdomains`
                         ? i.path.replace(`/subdomains`, "/")
                         : i.path.replace(`/subdomains/`, "/"),
-            }));
+            }});
+            console.log(userRouteMapped)
             return userRouteMapped;
         }
     },
